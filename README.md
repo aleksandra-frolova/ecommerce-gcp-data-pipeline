@@ -91,8 +91,8 @@ SELECT
   customer.customer_id,
   ROUND(SUM(orders.quantity*products.unit_price), 2) AS revenue
 from ecommerce_demo.customers_silver AS customer
-LEFT JOIN ecommerce_demo.orders_clean AS orders ON customer.customer_id = orders.customer_id
-INNER JOIN ecommerce_demo.products AS products ON orders.product_id= products.product_id
+INNER JOIN ecommerce_demo.orders_clean AS orders ON customer.customer_id = orders.customer_id
+INNER JOIN ecommerce_demo.products AS products ON orders.product_id = products.product_id
 GROUP BY customer.customer_id
 ```
 
