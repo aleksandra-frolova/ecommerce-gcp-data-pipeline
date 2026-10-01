@@ -45,5 +45,22 @@ Virtual environment helps to avoid future conflicts related to program versions.
 - `pip install faker` -type the command in the terminal
 - `python generate_data.py`
 
+**upload_to_gcs.py**
+- `python upload_to_gcs.py`
+
+The folder with data will appear in GCS.
+
+**Data Fusion**
+
+The pipeline was built: GCS -> Wrangler -> BigQuery
+The data was reviewed and was found that column "order_date" has inconsistent dates. Data Fusion doesn't have capabilities to easy fix the issue, so was decided to write a python function for that.
+
+The file "transform_order_date.py" was created where the issue with date was fixed. Data were uploaded to GCS again and went through wrangler to parse schema correctly and after were uploaded to BigQuery. This last step was applied on other data too. So it means all three tables: customers.csv, orders.csv, products.csv were uploaded to BigQuery.
+
+**BigQuery**
+There was notices inconsistency in customer table column "country". There were values like "US", "USA" etc. I decided to clean data inside big query and create golden layer where all data is consistent. 
+
+
+
 
 
